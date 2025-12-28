@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaClock, FaWhatsapp, FaCheck } from 'react-icons/fa';
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaClock, FaWhatsapp } from 'react-icons/fa';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -17,14 +17,12 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault(); 
-    // === MODIFICATION ICI : C'EST LE NUMÉRO MTN QUI REÇOIT LE WHATSAPP ===
+    // Le numéro MTN reçoit le message WhatsApp
     const phoneNumber = "237683818447"; 
     
-    // Construction du message
     const whatsappMessage = `Je suis ${formData.name}%0A%0A${formData.message}%0A%0A${formData.email}`;
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
     
-    // Ouverture de WhatsApp
     window.open(whatsappUrl, '_blank');
   };
 
@@ -60,7 +58,6 @@ const Contact = () => {
                  <div className="bg-orange-100 p-3 rounded-full text-orange-600"><FaPhoneAlt size={20} /></div>
                  <div>
                    <p className="text-sm text-gray-500 font-bold uppercase">Service Client</p>
-                   {/* Affichage des deux numéros */}
                    <p className="text-lg font-bold text-blue-900">MTN : (+237) 683 81 84 47 <span className="text-green-500 text-xs ml-1">(WhatsApp)</span></p>
                    <p className="text-lg font-bold text-blue-900">Orange : (+237) 656 76 33 41</p>
                  </div>
@@ -88,7 +85,7 @@ const Contact = () => {
                  </div>
                </div>
 
-               {/* BOUTON WHATSAPP DIRECT (Sur le numéro MTN) */}
+               {/* BOUTON WHATSAPP */}
                <div className="pt-4">
                  <a 
                    href="https://wa.me/237683818447" 
@@ -154,19 +151,22 @@ const Contact = () => {
 
         </div>
 
-        {/* === SECTION GOOGLE MAPS === */}
+        {/* === SECTION GOOGLE MAPS CORRIGÉE === */}
         <div className="bg-white p-4 rounded-3xl shadow-lg">
            <h3 className="text-xl font-bold text-center text-blue-900 mb-4">Retrouvez-nous à Yaoundé</h3>
-           <div className="w-full h-80 rounded-2xl overflow-hidden">
+           <div className="w-full h-80 rounded-2xl overflow-hidden relative">
+             {/* J'ai remplacé l'URL par un lien "maps.google.com/maps?q=..." avec "output=embed".
+                C'est la méthode gratuite qui ne nécessite pas de clé API et ne génère pas d'erreur.
+             */}
              <iframe 
-               title="Carte Euro Voyage CM"
-               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31845.89537968453!2d11.5000!3d3.8480!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x108bcf7a309a7977%3A0x7f54991207908!2sTropicana%2C%20Yaound%C3%A9!5e0!3m2!1sfr!2scm!4v1700000000000!5m2!1sfr!2scm" 
+               title="Localisation Euro Voyage CM"
                width="100%" 
                height="100%" 
-               style={{border:0}} 
-               allowFullScreen="" 
-               loading="lazy" 
-               referrerPolicy="no-referrer-when-downgrade"
+               frameBorder="0" 
+               scrolling="no" 
+               marginHeight="0" 
+               marginWidth="0" 
+               src="https://maps.google.com/maps?q=Carrefour+Tropicana,+Yaounde&t=&z=15&ie=UTF8&iwloc=&output=embed"
              ></iframe>
            </div>
         </div>
